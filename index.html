@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muthaprapai Trairat — Electronics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f7f9f7;
+    --bg2:      #eef3ef;
+    --card:     #ffffff;
+    --card2:    #f0f5f1;
+    --sage:     #6b9e7e;
+    --sage2:    #8bbfa0;
+    --mint:     #a8d5b5;
+    --mint-lt:  #d4eddc;
+    --sage-dk:  #3d6b52;
+    --text:     #2d3b35;
+    --muted:    #8fa898;
+    --border:   rgba(107,158,126,0.18);
+    --shadow:   0 4px 24px rgba(107,158,126,0.10);
+    --shadow2:  0 12px 40px rgba(107,158,126,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: radial-gradient(circle, rgba(107,158,126,0.10) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.1rem 4rem;
+    background: rgba(247,249,247,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.1rem; font-weight:600;
+    color: var(--sage-dk); letter-spacing:0.04em;
+  }
+  .nav-links { display:flex; gap:2.2rem; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.05em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--sage-dk); }
+
+  #hero {
+    position:relative; min-height:100vh;
+    display:flex; align-items:center;
+    padding:0 4rem; z-index:1;
+  }
+  .blob1 {
+    position:absolute; top:-80px; right:-80px;
+    width:520px; height:520px; border-radius:50%;
+    background: radial-gradient(circle at 40% 40%, rgba(168,213,181,0.35), rgba(168,213,181,0) 70%);
+    pointer-events:none;
+  }
+  .blob2 {
+    position:absolute; bottom:60px; left:-60px;
+    width:340px; height:340px; border-radius:50%;
+    background: radial-gradient(circle, rgba(107,158,126,0.12), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner {
+    display:grid; grid-template-columns:1fr auto;
+    gap:3rem; align-items:center; width:100%; max-width:1100px;
+  }
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'DM Mono', monospace; font-size:0.72rem;
+    color:var(--sage); border:1px solid rgba(107,158,126,0.3);
+    padding:0.35rem 0.9rem; border-radius:20px;
+    margin-bottom:1.6rem; letter-spacing:0.06em;
+    background: rgba(107,158,126,0.06);
+  }
+  .hero-tag::before { content:'✦'; font-size:0.55rem; }
+  h1 {
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600; font-size:clamp(3.2rem,6vw,5.2rem);
+    line-height:1.05; letter-spacing:-0.01em;
+    margin-bottom:0.5rem; color:var(--text);
+  }
+  h1 span { color:var(--sage); }
+  .hero-sub { font-size:1rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.4rem; font-weight:400; }
+  .hero-desc { font-size:0.95rem; color:#4a6358; line-height:1.8; max-width:480px; margin-bottom:2.2rem; font-weight:300; }
+  .hero-btns { display:flex; gap:0.9rem; flex-wrap:wrap; }
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:0.45rem;
+    background:var(--sage); color:#fff;
+    padding:0.7rem 1.7rem; border-radius:30px;
+    text-decoration:none; font-size:0.87rem; font-weight:500;
+    transition:all 0.25s; letter-spacing:0.02em;
+  }
+  .btn-primary:hover { background:var(--sage-dk); transform:translateY(-2px); box-shadow:var(--shadow2); }
+  .btn-outline {
+    display:inline-flex; align-items:center; gap:0.45rem;
+    border:1.5px solid var(--border); color:var(--sage-dk);
+    padding:0.7rem 1.7rem; border-radius:30px;
+    text-decoration:none; font-size:0.87rem; font-weight:400; transition:all 0.25s;
+  }
+  .btn-outline:hover { border-color:var(--sage); background:var(--mint-lt); }
+  .hero-stats { display:flex; gap:2.2rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); }
+  .stat-num { font-family:'Cormorant Garamond', serif; font-size:2rem; font-weight:600; color:var(--sage-dk); }
+  .stat-label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.1rem; }
+  .hero-photo {
+    width:240px; height:300px;
+    border-radius:120px 120px 80px 80px;
+    background: linear-gradient(160deg, var(--mint-lt), var(--mint));
+    border:3px solid rgba(107,158,126,0.2);
+    box-shadow:var(--shadow2);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:0.5rem;
+    flex-shrink:0; overflow:hidden; position:relative;
+  }
+  .hero-photo-emoji { font-size:3.5rem; }
+  .hero-photo-text { font-size:0.7rem; color:var(--muted); letter-spacing:0.05em; }
+
+  section {
+    position:relative; z-index:1;
+    padding:5.5rem 4rem;
+    max-width:1100px; margin:0 auto;
+  }
+  .section-label {
+    font-family:'DM Mono', monospace;
+    font-size:0.68rem; color:var(--sage);
+    letter-spacing:0.15em; text-transform:uppercase;
+    margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem;
+  }
+  .section-label::after { content:''; display:block; width:32px; height:1px; background:var(--mint); }
+  .section-title {
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600; font-size:clamp(2rem,3.5vw,3rem);
+    margin-bottom:2.8rem; color:var(--text);
+  }
+
+  .about-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:3.5rem; align-items:start; }
+  .about-text p { color:#4a6358; line-height:1.85; margin-bottom:1rem; font-size:0.93rem; font-weight:300; }
+  .about-info { display:flex; flex-direction:column; gap:0.75rem; }
+  .info-row {
+    display:flex; align-items:center; gap:0.9rem;
+    padding:0.9rem 1.1rem; background:var(--card);
+    border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
+  }
+  .info-icon { font-size:1.1rem; min-width:26px; }
+  .info-label { font-family:'DM Mono', monospace; font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.1rem; }
+  .info-val { font-size:0.88rem; color:var(--text); font-weight:500; }
+
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; }
+  .skill-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.5rem; box-shadow:var(--shadow); transition:all 0.25s; }
+  .skill-card:hover { transform:translateY(-4px); box-shadow:var(--shadow2); border-color:rgba(107,158,126,0.35); }
+  .skill-cat { font-family:'DM Mono', monospace; font-size:0.62rem; color:var(--sage); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:0.45rem; }
+  .tag { font-size:0.78rem; padding:0.28rem 0.75rem; border-radius:20px; letter-spacing:0.01em; font-weight:400; }
+  .tag-sage  { background:rgba(107,158,126,0.12); color:var(--sage-dk); border:1px solid rgba(107,158,126,0.22); }
+  .tag-mint  { background:rgba(168,213,181,0.2);  color:#3a7058; border:1px solid rgba(107,158,126,0.18); }
+  .tag-warm  { background:rgba(180,200,160,0.18); color:#4d6640; border:1px solid rgba(130,170,100,0.2); }
+
+  .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.3rem; }
+  .project-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:1.8rem; box-shadow:var(--shadow);
+    transition:all 0.25s; position:relative; overflow:hidden;
+  }
+  .project-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--sage), var(--mint));
+    opacity:0; transition:opacity 0.3s;
+  }
+  .project-card:hover::before { opacity:1; }
+  .project-card:hover { transform:translateY(-4px); box-shadow:var(--shadow2); }
+  .project-num { font-family:'DM Mono', monospace; font-size:0.62rem; color:var(--muted); margin-bottom:0.6rem; }
+  .project-title { font-family:'Cormorant Garamond', serif; font-size:1.15rem; font-weight:600; margin-bottom:0.5rem; line-height:1.3; color:var(--text); }
+  .project-period { font-family:'DM Mono', monospace; font-size:0.62rem; color:var(--sage); margin-bottom:0.85rem; letter-spacing:0.04em; }
+  .project-desc { font-size:0.875rem; color:#4a6358; line-height:1.75; margin-bottom:1.2rem; font-weight:300; }
+  .project-stack { display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .stack-tag { font-family:'DM Mono', monospace; font-size:0.62rem; padding:0.22rem 0.65rem; border:1px solid var(--border); border-radius:20px; color:var(--muted); background:var(--bg2); }
+
+  .timeline { position:relative; padding-left:2rem; }
+  .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom, var(--sage), var(--mint), transparent); }
+  .timeline-item { position:relative; margin-bottom:2.8rem; padding-left:1.5rem; }
+  .timeline-dot { position:absolute; left:-1px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--sage); box-shadow:0 0 0 3px rgba(107,158,126,0.2); transform:translateX(-50%); }
+  .timeline-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.35rem; }
+  .timeline-title { font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.05rem; color:var(--text); }
+  .timeline-period { font-family:'DM Mono', monospace; font-size:0.62rem; color:var(--sage); letter-spacing:0.04em; padding-top:0.2rem; }
+  .timeline-org { font-size:0.82rem; color:var(--sage2); margin-bottom:0.7rem; }
+  .timeline-list { list-style:none; font-size:0.875rem; color:#4a6358; line-height:1.75; font-weight:300; }
+  .timeline-list li { padding-left:1rem; position:relative; margin-bottom:0.35rem; }
+  .timeline-list li::before { content:'·'; position:absolute; left:0; color:var(--sage); font-size:1.1rem; line-height:1.4; }
+  .timeline-desc { font-size:0.875rem; color:#4a6358; line-height:1.75; font-weight:300; }
+
+  .interests-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1.1rem; }
+  .interest-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.5rem 1.2rem; text-align:center; box-shadow:var(--shadow); transition:all 0.25s; }
+  .interest-card:hover { transform:translateY(-3px); box-shadow:var(--shadow2); background:var(--card2); }
+  .interest-icon { font-size:1.8rem; margin-bottom:0.65rem; }
+  .interest-title { font-family:'Cormorant Garamond', serif; font-weight:600; font-size:0.95rem; margin-bottom:0.35rem; color:var(--text); }
+  .interest-desc { font-size:0.76rem; color:var(--muted); line-height:1.6; font-weight:300; }
+
+  #contact { max-width:1100px; margin:0 auto; padding:5.5rem 4rem; }
+  .contact-wrapper {
+    background:linear-gradient(135deg, #eef5f0, #f7fcf8);
+    border:1px solid var(--border); border-radius:24px; padding:4rem;
+    display:grid; grid-template-columns:1fr 1.2fr;
+    gap:4rem; align-items:start; box-shadow:var(--shadow2);
+    position:relative; overflow:hidden;
+  }
+  .contact-wrapper::before {
+    content:''; position:absolute; top:-80px; right:-80px;
+    width:280px; height:280px; border-radius:50%;
+    background:radial-gradient(circle, rgba(168,213,181,0.3), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-wrapper::after { content:'✦'; position:absolute; bottom:2rem; right:2.5rem; font-size:4rem; color:rgba(107,158,126,0.08); pointer-events:none; }
+  .contact-tagline { font-family:'Cormorant Garamond', serif; font-size:2.2rem; font-weight:600; line-height:1.2; margin-bottom:1rem; color:var(--text); }
+  .contact-tagline span { color:var(--sage); }
+  .contact-sub { font-size:0.88rem; color:var(--muted); line-height:1.75; font-weight:300; }
+  .contact-links { display:flex; flex-direction:column; gap:0.85rem; }
+  .contact-link {
+    display:flex; align-items:center; gap:1rem;
+    padding:1rem 1.2rem; background:var(--card);
+    border:1px solid var(--border); border-radius:14px;
+    text-decoration:none; color:var(--text);
+    transition:all 0.22s; font-size:0.88rem; box-shadow:var(--shadow);
+  }
+  .contact-link:hover { border-color:var(--sage); color:var(--sage-dk); transform:translateX(5px); box-shadow:var(--shadow2); }
+  .contact-link-icon { font-size:1.1rem; min-width:24px; text-align:center; }
+  .contact-link-label { font-family:'DM Mono', monospace; font-size:0.6rem; color:var(--muted); display:block; letter-spacing:0.07em; text-transform:uppercase; margin-bottom:0.1rem; }
+
+  footer { position:relative; z-index:1; text-align:center; padding:2rem; border-top:1px solid var(--border); font-family:'DM Mono', monospace; font-size:0.68rem; color:var(--muted); letter-spacing:0.05em; }
+
+  .fade-in { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+
+  @media (max-width:768px) {
+    nav { padding:1rem 1.5rem; }
+    .nav-links { display:none; }
+    #hero, section, #contact { padding:5rem 1.5rem 3rem; }
+    .hero-inner { grid-template-columns:1fr; }
+    .hero-photo { display:none; }
+    .about-grid { grid-template-columns:1fr; gap:2rem; }
+    .contact-wrapper { grid-template-columns:1fr; padding:2rem; gap:2rem; }
+    .hero-stats { flex-wrap:wrap; gap:1.5rem; }
+    h1 { font-size:2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Muthaprapai T.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#interests">Interests</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="hero">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Electronics Engineering · KMITL · Class of 2026</div>
+      <h1>Muthaprapai<br><span>Trairat</span></h1>
+      <p class="hero-sub">Electronics &amp; Test Engineer</p>
+      <p class="hero-desc">Passionate about energy solutions, smart grid, and embedded systems. Bridging hardware and software — from PCB design to automation tools that make engineers' work faster and more reliable.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">3.36</div><div class="stat-label">GPA</div></div>
+        <div><div class="stat-num">6mo</div><div class="stat-label">Internship</div></div>
+        <div><div class="stat-num">635</div><div class="stat-label">TOEIC</div></div>
+        <div><div class="stat-num">5+</div><div class="stat-label">Projects</div></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-emoji">👩‍💻</div>
+      <div class="hero-photo-text">Add your photo here</div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-label">01 — About Me</div>
+  <div class="section-title">Who I Am</div>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>I'm a 4th-year Electronics Engineering student at KMITL with a deep interest in energy systems, smart grid technology, and embedded programming.</p>
+      <p>My internship at Hana Microelectronics gave me real hands-on experience in semiconductor production, quality control, and building automation tools that went live on the factory floor — not just prototypes.</p>
+      <p>I enjoy bridging hardware and software: designing PCBs, programming microcontrollers, and writing programs that make workflows faster and more reliable. I'm an active learner who genuinely values feedback and continuous improvement.</p>
+    </div>
+    <div class="about-info">
+      <div class="info-row"><span class="info-icon">🎓</span><div><div class="info-label">Education</div><div class="info-val">B.Eng. Electronics — KMITL (2022–2026)</div></div></div>
+      <div class="info-row"><span class="info-icon">📍</span><div><div class="info-label">Location</div><div class="info-val">Thailand</div></div></div>
+      <div class="info-row"><span class="info-icon">🌐</span><div><div class="info-label">Language</div><div class="info-val">Thai (Native) · English (TOEIC 635)</div></div></div>
+      <div class="info-row"><span class="info-icon">🎯</span><div><div class="info-label">Interests</div><div class="info-val">Smart Grid · Energy · IoT · Automation</div></div></div>
+      <div class="info-row"><span class="info-icon">📜</span><div><div class="info-label">Certifications</div><div class="info-val">Six Sigma White &amp; Yellow Belt · Cadence Allegro</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">02 — Skills</div>
+  <div class="section-title">Technical Toolkit</div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-cat">Engineering Tools</div>
+      <div class="skill-tags">
+        <span class="tag tag-sage">MATLAB</span><span class="tag tag-sage">SolidWorks</span><span class="tag tag-sage">EasyEDA</span><span class="tag tag-sage">Cadence Allegro</span><span class="tag tag-sage">3D Printing</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Software Development</div>
+      <div class="skill-tags">
+        <span class="tag tag-mint">Python (Flask)</span><span class="tag tag-mint">C Language</span><span class="tag tag-mint">VB.NET / VB6</span><span class="tag tag-mint">Flutter</span><span class="tag tag-mint">MySQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Production &amp; QC</div>
+      <div class="skill-tags">
+        <span class="tag tag-warm">PFMEA</span><span class="tag tag-warm">SPC</span><span class="tag tag-warm">8D Report</span><span class="tag tag-warm">CPK Analysis</span><span class="tag tag-warm">SMT/PTH/COB</span><span class="tag tag-warm">BarTender</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Other</div>
+      <div class="skill-tags">
+        <span class="tag tag-sage">Six Sigma (YB)</span><span class="tag tag-sage">MS Excel</span><span class="tag tag-mint">BLE / ESP32</span><span class="tag tag-mint">PCB Layout</span><span class="tag tag-warm">Car License</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">03 — Projects</div>
+  <div class="section-title">What I've Built</div>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-title">Defect Tracking &amp; Label Printing System</div>
+      <div class="project-period">MAY – OCT 2025 · Hana Microelectronics</div>
+      <div class="project-desc">Automated Non-Conformance Material Tag generation by integrating BarTender with VB.NET, eliminating manual data entry on the semiconductor production line. Deployed to live production environment.</div>
+      <div class="project-stack"><span class="stack-tag">VB.NET</span><span class="stack-tag">BarTender</span><span class="stack-tag">MySQL</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">CPK Under-Target Warning Program</div>
+      <div class="project-period">MAY – OCT 2025 · Hana Microelectronics</div>
+      <div class="project-desc">Reads production log files in real-time, triggers popup alerts, and sends automated email notifications when Cpk falls below customer targets — preventing quality escapes before they escalate.</div>
+      <div class="project-stack"><span class="stack-tag">VB.NET</span><span class="stack-tag">SPC</span><span class="stack-tag">SMTP</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">BLE RSSI Distance Estimation App</div>
+      <div class="project-period">NOV 2024 – MAR 2025 · Academic</div>
+      <div class="project-desc">Smartphone app for real-time detection of the nearest ESP32 device using BLE. Calculates proximity via RSSI signal strength with a user-friendly interface. Applicable to smart home device control based on user location.</div>
+      <div class="project-stack"><span class="stack-tag">Flutter</span><span class="stack-tag">ESP32</span><span class="stack-tag">BLE</span><span class="stack-tag">Dart</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-title">25V 2A Switching Power Supply</div>
+      <div class="project-period">JUL – OCT 2024 · Academic</div>
+      <div class="project-desc">Designed a DC-DC switching power supply using LM2596 — from circuit design and component selection to full PCB layout. Gained practical experience in voltage regulation, current limiting, and hardware debugging.</div>
+      <div class="project-stack"><span class="stack-tag">EasyEDA</span><span class="stack-tag">LM2596</span><span class="stack-tag">PCB Design</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-title">SolidWorks Fixture Design &amp; 3D Printing</div>
+      <div class="project-period">MAY – OCT 2025 · Hana Microelectronics</div>
+      <div class="project-desc">Designed mechanical parts and test fixtures using SolidWorks with Flow Simulation. Performed 3D printing for prototype tooling to support semiconductor test engineering workflows.</div>
+      <div class="project-stack"><span class="stack-tag">SolidWorks</span><span class="stack-tag">Flow Simulation</span><span class="stack-tag">3D Printing</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">04 — Experience &amp; Education</div>
+  <div class="section-title">My Journey</div>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-title">Co-op Internship — Test Engineer</div>
+        <div class="timeline-period">MAY – OCT 2025</div>
+      </div>
+      <div class="timeline-org">Hana Microelectronics Public Co., Ltd. · Lamphun</div>
+      <ul class="timeline-list">
+        <li>Learned end-to-end semiconductor flows: SMT, PTH, and COB processes</li>
+        <li>Quality control using PFMEA, SPC, and 8D Reports</li>
+        <li>Built automation tools (Defect Tracking System, CPK Warning Program) deployed to production</li>
+        <li>Designed fixtures in SolidWorks; joined customer conference calls to report production data</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-title">Teaching Assistant — Charm School</div>
+        <div class="timeline-period">NOV 2024 – MAR 2025</div>
+      </div>
+      <div class="timeline-org">King Mongkut's Institute of Technology Ladkrabang</div>
+      <div class="timeline-desc">Supported instructors in conducting activities, mentoring students, and fostering interpersonal and professional skill development.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-title">Basic IC Testboard PCB Layout Training</div>
+        <div class="timeline-period">JAN 2026</div>
+      </div>
+      <div class="timeline-org">KMITL — Cadence Allegro</div>
+      <div class="timeline-desc">Completed industry-standard PCB design and testboard layout training for integrated circuits.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:var(--mint);box-shadow:0 0 0 3px rgba(168,213,181,0.3)"></div>
+      <div class="timeline-header">
+        <div class="timeline-title">B.Eng. Electronics Engineering</div>
+        <div class="timeline-period">2022 – 2026</div>
+      </div>
+      <div class="timeline-org">KMITL — School of Engineering · GPA 3.36</div>
+      <div class="timeline-desc">Focus on electronics systems, embedded programming, and energy technology. Six Sigma White &amp; Yellow Belt certified.</div>
+    </div>
+  </div>
+</section>
+
+<section id="interests">
+  <div class="section-label">05 — Personal Interests</div>
+  <div class="section-title">Beyond Engineering</div>
+  <div class="interests-grid fade-in">
+    <div class="interest-card"><div class="interest-icon">⚡</div><div class="interest-title">Energy Technology</div><div class="interest-desc">Smart grid, renewable energy systems, and sustainable power solutions</div></div>
+    <div class="interest-card"><div class="interest-icon">🤖</div><div class="interest-title">Embedded Systems</div><div class="interest-desc">IoT devices, microcontrollers, and building things that interact with the real world</div></div>
+    <div class="interest-card"><div class="interest-icon">🔧</div><div class="interest-title">Hardware Tinkering</div><div class="interest-desc">PCB design, circuit debugging, and hands-on prototyping</div></div>
+    <div class="interest-card"><div class="interest-icon">💡</div><div class="interest-title">Process Automation</div><div class="interest-desc">Finding repetitive workflows and writing tools to eliminate them</div></div>
+    <div class="interest-card"><div class="interest-icon">📚</div><div class="interest-title">Continuous Learning</div><div class="interest-desc">Actively seeking new skills, certifications, and challenges</div></div>
+  </div>
+</section>
+
+<div id="contact">
+  <div class="contact-wrapper fade-in">
+    <div>
+      <div class="section-label" style="margin-bottom:1rem">06 — Contact</div>
+      <div class="contact-tagline">Let's work<br><span>together.</span></div>
+      <p class="contact-sub">Open to full-time roles, internships, and collaborations in electronics engineering, test engineering, or embedded systems.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:muthaprapai.tr@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉️</span>
+        <div><span class="contact-link-label">Email</span>muthaprapai.tr@gmail.com</div>
+      </a>
+      <a href="tel:+66863225880" class="contact-link">
+        <span class="contact-link-icon">📱</span>
+        <div><span class="contact-link-label">Phone</span>(+66) 86-322-5880</div>
+      </a>
+      <a href="https://www.linkedin.com/in/muthaprapaitr/" target="_blank" class="contact-link">
+        <span class="contact-link-icon">🔗</span>
+        <div><span class="contact-link-label">LinkedIn</span>linkedin.com/in/muthaprapaitr</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>✦ muthaprapai trairat · electronics engineer · 2026 ✦</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const children = e.target.querySelectorAll('.skill-card,.project-card,.interest-card,.info-row,.timeline-item');
+        children.forEach((el, i) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(18px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 80 + i * 65);
+        });
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
